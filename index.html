@@ -1,14 +1,25 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/proyecto-js/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Buscador de Libros</title>
     <script type="module" crossorigin src="/proyecto-js/assets/index-CPCoLQh4.js"></script>
     <link rel="stylesheet" crossorigin href="/proyecto-js/assets/index-CrYBktwj.css">
   </head>
   <body>
-    <div id="app"></div>
+    <!-- Título principal -->
+    <h1>Buscador de Libros</h1>
+    <!-- Formulario de búsqueda -->
+    <form class="search-form" id="searchForm">
+      <input type="text" id="searchInput" class="search-input" placeholder="Ingresa el título del libro">
+      <button type="submit" class="search-button">Buscar</button>
+    </form>
+    <!-- Contenedor para mensajes de error -->
+    <div id="errorMessage" class="error-message"></div>
+    <!-- Contenedor para mostrar los resultados de la búsqueda -->
+    <div id="resultsContainer" class="results-container"></div>
+
+    <!-- Script principal de la aplicación -->
   </body>
 </html>
