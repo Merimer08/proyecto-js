@@ -57,22 +57,47 @@ function showResults(books) {
       <p>${book.year}</p>
     `;
     resultsContainer.appendChild(card);
-  });
-}   
+  }
+ // Variables para el título, autor, año y portada del libro
+ const bookTitle = book.title || 'Título no disponible';
+ const bookAuthor = book.author_name ? book.author_name.join(', ') : 'Autor desconocido';
+ const bookFirstPublishYear = book.first_publish_year || 'Año no disponible';
+ const bookCoverUrl = book.cover_i 
+   ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`  // URL de la portada si está disponible
+   : 'https://via.placeholder.com/128x192.png?text=Sin+Portada'; // Imagen de marcador de posición
 
-//Variable para el titulo del libro, autorm año y portada del libro
-const bookTitle = book.title || 'Título no disponible';
-    const bookAuthor = book.author_name ? book.author_name.join(', ') : 'Autor desconocido';
-    const bookFirstPublishYear = book.first_publish_year || 'Año no disponible';
-    const bookCoverUrl = book.cover_i 
-      ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`  // URL de la portada si está disponible
-      : 'https://via.placeholder.com/128x192.png?text=Sin+Portada'; // Imagen de marcador de posición
+ // Rellenamos el contenido de la tarjeta con los datos del libro
+ bookElement.innerHTML = `
+   <img src="${bookCoverUrl}" alt="${bookTitle}" class="book-cover">
+   <h3 class="book-title">${bookTitle}</h3>
+   <p class="book-author">${bookAuthor}</p>
+   <p class="book-year">Publicado en: ${bookFirstPublishYear}</p>
+ `;
+ 
+ // Añadimos la tarjeta del libro al contenedor de resultados
+ resultsContainer.appendChild(bookElement);
+});
+}
 
 // Función para buscar libros en la API de Open Library
 async function searchBooks(title) {
+//Si no se ha ingresado un título, mostramos un mensaje de error
+if (!title) {
+  showError('Por favor ingresa un título de libro.');
+  return;
+}// hacemos la solicitud a la API de Open Library
+
   try {
     const response = await fetch(`https://openlibrary.org/search.json?q=${title}`);
+    // Si la solicitud no fue exitosa, mostramos un mensaje de error
+    if (!response.ok) {
+      showError('No se pudo realizar la búsqueda de libros.');
+      return [];
+    }
+    // Si la solicitud fue exitosa, obtenemos los datos en formato JSON
     const data = await response.json();
+    // Devolvemos los documentos encontrados  (libros)  
+    
     return data.docs;
   } catch (error) {
     console.error('Error al buscar libros:', error);
