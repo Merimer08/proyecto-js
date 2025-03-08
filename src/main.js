@@ -35,3 +35,47 @@ function showError(message) {
   resultsContainer.innerHTML = ''; // Limpia los resultados anteriores
 
 }
+
+// Función para mostrar los resultados de la búsqueda en tarjetas
+function showResults(books) {
+  resultsContainer.innerHTML = ''; // Limpia los resultados anteriores
+
+  // Si no se encontraron libros, mostramos un mensaje de error
+  if (books.length === 0) {
+    showError('No se encontraron libros.');
+    return;
+  }
+
+  // Itera sobre los libros y crea una tarjeta para cada uno
+  books.forEach(book => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `
+      <img src="${book.image}" alt="${book.title}">
+      <h2>${book.title}</h2>
+      <p>${book.author}</p>
+      <p>${book.year}</p>
+    `;
+    resultsContainer.appendChild(card);
+  });
+}   
+
+//Variable para el titulo del libro, autorm año y portada del libro
+const bookTitle = book.title || 'Título no disponible';
+    const bookAuthor = book.author_name ? book.author_name.join(', ') : 'Autor desconocido';
+    const bookFirstPublishYear = book.first_publish_year || 'Año no disponible';
+    const bookCoverUrl = book.cover_i 
+      ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`  // URL de la portada si está disponible
+      : 'https://via.placeholder.com/128x192.png?text=Sin+Portada'; // Imagen de marcador de posición
+
+// Función para buscar libros en la API de Open Library
+async function searchBooks(title) {
+  try {
+    const response = await fetch(`https://openlibrary.org/search.json?q=${title}`);
+    const data = await response.json();
+    return data.docs;
+  } catch (error) {
+    console.error('Error al buscar libros:', error);
+    return [];
+  }
+}
