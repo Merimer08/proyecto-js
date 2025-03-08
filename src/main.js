@@ -26,5 +26,12 @@ const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('searchInput');
 const errorMessage = document.getElementById('errorMessage');
 const resultsContainer = document.getElementById('resultsContainer');
-const spinner = document.getElementById('spinner');  
+ 
 
+
+// Función para mostrar un mensaje de error en el contenedor de error
+function showError(message) {
+  errorMessage.innerHTML = message; // Actualiza el mensaje de error
+  resultsContainer.innerHTML = ''; // Limpia los resultados anteriores
+
+}
