@@ -97,10 +97,18 @@ if (!title) {
     // Si la solicitud fue exitosa, obtenemos los datos en formato JSON
     const data = await response.json();
     // Devolvemos los documentos encontrados  (libros)  
-    
+
     return data.docs;
   } catch (error) {
     console.error('Error al buscar libros:', error);
     return [];
   }
-}
+};
+
+// Manejador de eventos para el envío del formulario de búsqueda
+searchForm.addEventListener('submit', async (event) => {
+  event.preventDefault(); // Evitamos el comportamiento predeterminado del formulario
+  const title = searchInput.value.trim(); // Obtenemos el título ingresado por el usuario
+  const books = await searchBooks(title); // Buscamos libros en la API de Open Library
+  showResults(books); // Mostramos los resultados de la búsqueda
+})
