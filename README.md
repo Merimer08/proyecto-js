@@ -1,6 +1,6 @@
 # proyecto-js
 
-![alt text](image.png)
+![alt text](documentacion/image.png)
 
 # Para
 
@@ -15,7 +15,7 @@
 
 # APP
 
-Quiero crear una aplicacion en JS en la que conectes a los niños de zaragoza con las actividades extraescolares que realiza
+
 
 He creado una aplicación web completa para buscar libros utilizando la API de OpenLibrary. La aplicación incluye:
 Un formulario de búsqueda con:
@@ -30,7 +30,7 @@ Visualización de resultados en tarjetas
 Diseño responsive
 Manejo de casos donde no hay imagen disponible
 Para usar la aplicación:
-Simplemente abre el archivo index.html en tu navegador
+Simplemente abre el archivo main.js en tu navegador
 Escribe el título del libro que quieres buscar
 Haz clic en el botón "Buscar"
 La aplicación mostrará:
